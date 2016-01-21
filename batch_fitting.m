@@ -41,7 +41,7 @@ end
 
 % initiate the parallel environment if necessary
 try % parpool, R2013b or later
-	poolobj = gcp('nocreate');
+    poolobj = gcp('nocreate');
     if isempty(poolobj)
         if (nargin < 5)
             parpool
