@@ -41,22 +41,22 @@ end
 
 % initiate the parallel environment if necessary
 try % parpool, R2013b or later
-        poolobj = gcp('nocreate');
-        if isempty(poolobj)
-            if (nargin < 5)
-                parpool
-            else
-                parpool(poolsize);
-            end
+	poolobj = gcp('nocreate');
+    if isempty(poolobj)
+        if (nargin < 5)
+            parpool
+        else
+            parpool(poolsize);
         end
+    end
 catch % matlabpool, R2013a or earlier
-        if matlabpool('size')==0
-            if (nargin < 5)
-                matlabpool
-            else
-                matlabpool('OPEN', poolsize);
-            end
+    if matlabpool('size')==0
+        if (nargin < 5)
+            matlabpool
+        else
+            matlabpool('OPEN', poolsize);
         end
+    end
 end
 
 % load the roi file
@@ -137,8 +137,8 @@ end
 
 % close the parallel pool
 try % parpool, R2013b or later
-        poolobj = gcp('nocreate');
-        delete(poolobj);
+    poolobj = gcp('nocreate');
+    delete(poolobj);
 catch % matlabpool, R2013a or earlier
-        matlabpool close;
+    matlabpool close;
 end 
